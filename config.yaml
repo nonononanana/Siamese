@@ -1,0 +1,48 @@
+experiment_name: 'siamese-baseline'
+
+task: 'train'
+make_dict: False
+data_preprocessing: False
+
+ckpt_dir: 'ckpt/'
+
+data:
+    training_dataset: 'quora'
+    testing_dataset: 'quora'
+    train_val_split: 0.8
+    training_path: data/train.csv
+    testing_path: data/test_tiny.csv
+
+training:
+    num_epochs: 50
+    learning_rate: 0.01
+    # options = ['adam', 'adadelta', 'rmsprop']
+    optimizer: 'sgd'
+
+
+embedding:
+    full_embedding_path: 'data/glove.6B.300d.txt'
+    cur_embedding_path: 'data/embedding.pkl'
+
+model:
+    fc_dim: 100
+    name: 'siamese'
+    embed_dim: 300
+    batch_size: 1
+    embedding_freeze: False
+    encoder:
+        hidden_size: 150
+        num_layers: 2
+        bidirectional: False
+        dropout: 0.2
+
+result:
+    filename: 'result.txt'
+    filepath: 'res/'
+
+
+
+
+
+
+
